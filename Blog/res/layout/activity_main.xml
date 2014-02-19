@@ -1,0 +1,141 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_list_background" >
+
+    <LinearLayout
+        android:id="@+id/account"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical" >
+        <TextView
+            android:id="@+id/blog_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/blog_login"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF" />
+
+        <LinearLayout
+            android:id="@+id/blog_id"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/blog_login"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/blog_id" />
+            <EditText
+                android:id="@+id/id"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/usr_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/blog_id"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:orientation="horizontal" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/usrname" />
+            <EditText
+                android:id="@+id/usrname"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/blog_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@id/usr_name"
+            android:orientation="horizontal" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/password" />
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--**********************************************************************************************-->
+
+    <LinearLayout
+        android:id="@+id/diary"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="30dp"
+        android:layout_below="@+id/account"
+        android:orientation="vertical" >
+        <TextView
+            android:id="@+id/diary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/diary"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/new_diary"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/diary"
+            android:gravity="center"
+            android:text="@string/new_diary"
+            android:textSize="22sp"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/diary_list"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/new_diary"
+            android:gravity="center"
+            android:text="@string/diary_list"
+            android:textSize="22sp"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/draft_list"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/diary_list"
+            android:gravity="center"
+            android:text="@string/drafts"
+            android:textSize="22sp"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+    
+</RelativeLayout>

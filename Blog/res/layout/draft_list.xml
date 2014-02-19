@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/new_diary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_list_background" >
+
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="#409ACD32"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/clear_all"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:enabled="false"
+        android:text="@string/clear_all"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF" />
+
+    <ListView
+        android:id="@id/android:list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/title_bar"
+        android:layout_above="@+id/clear_all"
+        android:cacheColorHint="#00000000"
+        android:drawSelectorOnTop="false"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="true"
+        android:scrollingCache="false"
+        android:transcriptMode="alwaysScroll" />
+
+</RelativeLayout>

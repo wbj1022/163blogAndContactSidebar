@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF" >
+
+    <ListView
+        android:id="@+id/contact_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E0EEE8"
+        android:fadingEdge="none"
+        android:scrollbars="none" />
+
+    <com.franco.sidebar.AlphabetIndexer
+        android:id="@+id/side_bar"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:id="@+id/toast_string"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/contacts_toast_bg"
+        android:gravity="center"
+        android:textColor="#ff63a67a"
+        android:textSize="30sp"
+        android:visibility="gone" />
+
+</RelativeLayout>

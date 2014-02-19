@@ -1,0 +1,57 @@
+/* 公共样式  */
+.fw1{font-weight:bold;}
+.clearfix{zoom:1;}
+.pleft{float:left;}
+.pright{float:right;}
+.clearfix:after{clear:both;content:'.';display:block;visibility:hidden;height:0;}
+.thide{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;-o-text-overflow:ellipsis;word-break:keep-all;}
+.g_t_hide_mulline{overflow:hidden;text-overflow:ellipsis;word-break:break-all;}
+
+/* 日志详细页面 样式  */
+.m-face img{width:48px;height:48px;}
+.m-read artical .xnt img{max-width:95%}
+
+/* 评论模块公共样式  */
+/*.g-mdl{width:300px;}  this line for test */
+
+.cmtbox{}
+.cmtbox .maincmtipt{text-align:left;cursor:pointer;}
+.cmtbox .cmtlistbox{}
+.cmtbox .cmtcase{}
+
+.cmtbox .maincmtitem{border-bottom:1px solid #c6c6c6;background:-webkit-gradient(linear,left bottom,left top,color-stop(0, #f8f8f8),color-stop(1, #fefefe));}
+.cmtbox .maincmtitem .avatar{display:block;width:50px;height:50px;border:1px solid #acacac;border-radius:4px;-webkit-box-shadow:0 1px 2px #aaa;}
+.cmtbox .maincmtitem .avatar img{width:48px;height:48px;border-radius:4px;}
+.cmtbox .maincmtitem .maincmtcnt,
+.cmtbox .subcmtitem{position:relative;display:block;min-height:2.8em;padding:10px;line-height:1.75em;/*border-bottom:1px solid #d6d6d1;background:-webkit-gradient(linear,left bottom,left top,color-stop(0, #f4f4f0),color-stop(1, #fcfcfa));*/}
+.cmtbox .subcmtitem{margin-top:8px;border:1px solid #dcd1c6;background:#ffffee;}
+.cmtbox .maincmtitem .maincmtcnt .mainleft{float:left;width:50px;height:50px;}
+.cmtbox .maincmtitem .mainleft .avatar{}
+
+.cmtbox .maincmtitem .maincmtcnt .mainright{margin-left:60px;min-height:55px;}
+.cmtbox .maincmtitem .maincmtcnt .maimttl{/*width:95%;*/margin-right:100px;}
+.cmtbox .maincmtitem .maincmtcnt .maimttl .ttltxt{width:99%;}
+.cmtbox .maincmtitem .mainright .mainreply{float:right;cursor:pointer;}
+.cmtbox .maincmtitem .maintime,
+.cmtbox .subcmtitem .subtime{float:right;width:130px;margin-left:-100px;text-align:right;color:#898989;}
+
+.cmtbox .maincmtitem .subcomments{padding:10px;}
+
+.cmtbox .subcmtitem{}
+.cmtbox .subcmtitem .subleft{float:left;height:50px;}
+
+.cmtbox .subcmtitem .subright{margin-left:60px;min-height:55px;text-align:left;}
+.cmtbox .subcmtitem .subright .subttl{}
+.cmtbox .subcmtitem .subright .subcnt{}
+.cmtbox .subcmtitem .subright .subreply{float:right;cursor:pointer;}
+
+.cmtbox .cmtmore{}
+.cmtbox .js-refresh{padding:10px;}
+
+/* 编辑层 公共样式 */
+.mwblog-layer{position:relative;z-index:100;width:100%;height:1000px;background-color:#fff;}
+
+
+/* 日志详细页面  */
+.mdl-6{}
+.mdl-6 .m-read{}

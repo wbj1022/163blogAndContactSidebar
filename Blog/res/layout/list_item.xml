@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/draft_item"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:orientation="horizontal"
+    android:descendantFocusability= "blocksDescendants" >
+
+    <TextView
+        android:id="@+id/draft_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="55dp"
+        android:gravity="center_vertical"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF" />
+
+    <ImageButton
+        android:id="@+id/del"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:background="@null"
+        android:src="@drawable/del_btn"
+        android:focusable="false"/>
+
+</RelativeLayout>

@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <title>网易博客</title>
+  <meta charset="UTF-8"> 
+  <meta name="author" content="netease"/>
+  <meta name="version" content="1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <link type="text/css" rel="stylesheet" href="../css/style.css"/>
+  <link type="text/css" rel="stylesheet" href="../css/blog.css"/>
+</head>
+<body>
+  <a href="#" id="mwblog-hash"></a>
+  <div class="g-scroller"><div id="mwblog-container"></div><div style="display:none;" id="mwblog-layer" class="mwblog-layer"></div></div>
+  <div id="mwblog-template" style="display:none;">
+    <!-- 替代iframe中模版 begin-->
+    <textarea name="jst" id="m2-jst-0">
+		<div class="g-content">
+			<div class="m-list m-singlelinelist msgcentertag">
+				<a class="itm" href="#m=2&t=1"><h2>短消息<span class="num ${tag}"></span></h2></a>
+				<a class="itm" href="#m=2&t=2"><h2>系统通知<span class="num ${tag}"></span></h2></a>
+				<a class="itm" href="#m=2&t=3"><h2>评论通知<span class="num ${tag}"></span></h2></a>
+				<a class="itm" href="#m=2&t=4"><h2>评论回复通知<span class="num ${tag}"></span></h2></a>
+				<a class="itm" href="#m=2&t=5"><h2>留言通知<span class="num ${tag}"></span></h2></a>
+			</div>
+		</div>  
+    </textarea>
+    
+    <textarea name="jst" id="m2-jst-1">
+		<nav class="m-blognav">
+			<a href="#m=2&t=1"><span class="js-crt">收件箱<em></em></span></a>
+			<a href="#m=2&t=6"><span>发件箱<em></em></span></a>
+		</nav>
+		<article class="m-list ${tag}">
+		</article>
+		<div class="m-dwnmore ${tag}"><a href="#" >加载更多...</a></div>		
+    </textarea>
+    <textarea name="jst" id="m2-jst-1a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+		  <div class="itm">
+          	<div class="w-face"><a href="#m=3&t=0&r=t&uname=${itm.counterUserName}"><img src="http://os.blog.163.com/common/ava.s?host=${itm.counterUserName}"/></a></div>
+			<a href="#m=2&t=7&mid=${itm.id}">				
+				<div class="w-txtdesc">
+					<div class="w-notes2">
+						<div class="top">
+							<span>${(itm.counterUserNick||itm.counterUserName)|escape}</span>
+							<small class="tiptxt">&nbsp;&nbsp;说</small>
+						</div>
+						<time>${itm.publishTime|datetime}</time>
+					</div>
+					<p class="cnt">${itm.content}</p>
+				</div>
+			</a>
+		  </div>		 
+        {/list}
+      {/if}
+    </textarea>
+    
+    <textarea name="jst" id="m2-jst-6">
+		<nav class="m-blognav">
+			<a href="#m=2&t=1"><span>收件箱<em></em></span></a>
+			<a href="#m=2&t=6"><span class="js-crt">发件箱<em></em></span></a>
+		</nav>
+		<article class="m-list ${tag}">
+		</article>
+		<div class="m-dwnmore ${tag}"><a href="#" >加载更多...</a></div>		
+    </textarea>
+    <textarea name="jst" id="m2-jst-6a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+			<a class="itm">
+				<div class="w-notes2">
+					<div class="top">
+						<span><small class="s-fc1">发送给</small>&nbsp;&nbsp;${(itm.counterUserNick||itm.counterUserName)|escape}</span>
+					</div>
+					<time>${itm.publishTime|datetime}</time>
+				</div>
+				<p class="cnt">${itm.content}</p>
+			</a>				       
+        {/list}
+      {/if}
+    </textarea>
+    <textarea name="jst" id="m2-jst-7">
+		<div class="g-content m-writecnt">
+			<form>
+			 <textarea placeholder="回复内容..." class="${tag}"><&#47;textarea>
+			</form>
+		</div>
+		<footer>
+		<div class="act f-fs1">
+		  <div class="m-btn0 ${tag}" >立即发布</div>
+		</div>
+		</footer>
+    </textarea>     
+    <textarea name="jst" id="m8-jst-0">
+      <!--<header><h1>反馈</h1></header>-->
+		<form class="${tag}">
+			<div class="g-content">
+				<div class="m-feedback">
+					<p>亲爱的用户，欢迎您对我们提出宝贵的建议：</p>
+					<textarea class="m-input ${tag}" placeholder="反馈内容..."><&#47;textarea>
+					<div class="phone">
+						<p>如果您愿意接受我们的回访，请填写手机号码：</p>
+						<input type="text" class="m-input ${tag}" placeholder="手机号码..." >
+					</div>
+				</div>
+			</div>
+			<footer>
+				<div class="act">
+					<div class="m-btn0 ${tag}" >立即提交</div>
+				</div>
+			</footer>
+		</form>
+    </textarea>
+  <textarea name="jst" id="m11-jst-1">
+	<div class="g-content">
+		<div class="m-personinfo">
+			<div class="w-face"><a href="#"><img class="${tag}" /></a></div>
+			<div class="w-txtdesc">
+				<h2 class="${tag}"></h2>
+				<p class="w-notes"><time class="${tag}"></time>更新</p>
+			</div>
+		</div>
+		<article class="m-cntbox">
+			<div class="m-bloguparr"><span></span></div>
+			<div class="cnt">
+				<img  width="100%" class="${tag}"/>
+				<p class="${tag}"></p>
+				<div class="m-act ${tag}" style="display:none;">
+					<button class="m-btn1"><span class="m-delete ${tag}">删 除</span></button>
+				</div>
+			</div>
+		</article>
+	</div>	
+  </textarea>
+  
+  <textarea name="jst" id="m11-jst-0">
+	<div class="g-content">
+		<div class="m-personinfo">
+			<div class="w-face"><a href="#"><img class="${tag}" /></a></div>
+			<div class="w-txtdesc">
+				<h2 class="${tag}"></h2>
+				<p class="w-notes"><time class="${tag}"></time>更新</p>
+			</div>
+		</div>
+		<article class="m-cntbox">
+			<div class="m-bloguparr"><span></span></div>
+			<div class="m-gallerylist ${tag}">
+			</div>
+		</article>
+		<div class="m-dwnmore ${tag}"><a href="#" >加载更多...</a></div>
+	</div>	
+  </textarea>
+  
+  <textarea name="jst" id="m11-jst-0a">
+    {if xlist.length>0}
+      {list beg..end-1 as x}
+        {var itm = xlist[x]}
+        <a class="itm" href="#m=11&t=1&uname=${ext.uname}&pid=${itm.id}"><div class="img"><img src="${itm.sq}"></div></a>
+      {/list}
+    {/if}
+  </textarea>        
+    <!-- 替代iframe中模版 end-->
+    
+    
+    <!-- 公用模板 -->
+    <textarea name="jst" id="m-jst-0">	  
+    </textarea>
+    <textarea name="jst" id="m-jst-2">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+        {var itm = xlist[x]}
+          {if itm.type==-1}
+			<a class="itm" href="#m=6&t=0&uname=${itm.userName}&bid=${itm.blog_Id}">
+				<div class="w-face"><img src="http://os.blog.163.com/common/ava.s?host=${itm.userName}"/></div>
+				<div class="w-txtdesc">
+					<p class="w-notes2"><span>${itm.nickName|escape}</span><time>${itm.time|datetime}</time></p>
+					<p><span class="s-fc1">发表了：</span>${itm.blog_title}</p>
+				</div>
+			</a>
+          {/if}
+          {if  itm.type==-2}
+			<a class="itm" href="#m=11&t=0&uname=${itm.userName}&aid=${itm.photo_albumId}">
+				<div class="w-face"><img src="http://os.blog.163.com/common/ava.s?host=${itm.userName}"/></div>
+				<div class="w-txtdesc">
+					<p class="w-notes2"><span>${itm.nickName|escape}</span><time>${itm.time|datetime}</time></p>
+					<p><span class="s-fc1">更新了相册：</span>${itm.photo_albumName}</p>
+				</div>
+			</a>
+          {/if}
+          {if itm.type==-4}
+			<a {if itm.followUserNames!=null && itm.followUserNames.length>1}class="itm js-merge" followusernames="{list itm.followUserNames as j}${j}||{/list}" follownicknames="{list itm.followNickNames as k}${k}||{/list}" {else} href="#m=3&t=0&uname=${itm.follow_userName}" class="itm"{/if}>
+				<div class="w-face"><img src="http://os.blog.163.com/common/ava.s?host=${itm.userName}"/></div>
+				<div class="w-txtdesc">
+					<p class="w-notes2"><span>${itm.nickName|escape}</span><time>${itm.time|datetime}</time></p>
+					<p><span class="s-fc1">关注了：</span>{if itm.followNickNames!=null && itm.followNickNames.length>1}{list itm.followNickNames as i}${i}{if i_index<itm.followNickNames.length-1}、{/if}{/list}{else}${itm.follow_nickName}{/if}</p>
+				</div>
+			</a>
+          {/if}
+          {if itm.type==-5}
+			<a class="itm" href="#m=9&uname=${itm.userName}&id=${itm.mood_Id}">
+				<div class="w-face"><img src="http://os.blog.163.com/common/ava.s?host=${itm.userName}"/></div>
+				<div class="w-txtdesc">
+					<p class="w-notes2"><span>${itm.nickName|escape}</span><time>${itm.time|datetime}</time></p>
+					<p><span class="s-fc1">说：</span>${itm.mood_content}</p>
+				</div>
+			</a>
+          {/if}
+          {if itm.type==-9}
+			<a class="itm" href="#m=6&t=0&uname=${itm.blog_userName}&bid=${itm.blog_Id}">
+				<div class="w-face"><img src="http://os.blog.163.com/common/ava.s?host=${itm.userName}"/></div>
+				<div class="w-txtdesc">
+					<p class="w-notes2"><span>${itm.nickName|escape}</span><time>${itm.time|datetime}</time></p>
+					<p><span class="s-fc1">推荐了：</span>${itm.blog_title}</p>
+				</div>
+			</a>
+          {/if}
+          {if itm.type==-10}
+			<a class="itm" href="">
+				<div class="">
+					<p class="w-notes2"><span>${itm.nickName|escape}</span><time>${itm.time|datetime}</time></p>
+					<p><span class="s-fc1">发起了投票：</span>${itm.vote_title}</p>
+				</div>
+			</a>
+          {/if}
+          {if itm.type==-11}
+			<a class="itm" href="">
+				<div class="">
+					<p class="w-notes2"><span>${itm.nickName|escape}</span><time>${itm.time|datetime}</time></p>
+					<p><span class="s-fc1">参与了投票：</span>${itm.vote_title}</p>
+				</div>
+			</a>
+          {/if}
+          {if itm.type==-12}
+          {/if}
+        {/list}
+      {/if}
+    </textarea>
+    <!-- 登录相关模板 -->
+    <textarea name="jst" id="m0-jst-0">
+	<div class="g-content ${tag}">
+		<div class="m-login">
+			<div class="m-loginform">
+				<div class="itm top">
+					<div class="cnt"><lable>帐号：</lable><div class="inputarea"><input type="text" class="m-text ${tag}" placeholder="如 name@example.com"/><span style="display:none" class="m-bclose ${tag}">&nbsp;</span></div></div>
+				</div>
+				<div class="itm bottom">
+					<div class="cnt"><lable>密码：</lable><div class="inputarea"><input type="password" class="m-text password ${tag}"/><span style="display:none" class="m-bclose ${tag}">&nbsp;</span></div></div>
+				</div>
+			</div>
+			<p class="f-fs0 s-fc0">使用电脑访问 blog.163.com 找回密码或注册新帐户</p>
+			<footer>
+				<div class="act">
+					<label class="m-chkbox m-chkbox-login js-ok"><input type="checkbox" class="${tag}"/><span class="txt">自动登录</span></label>
+					<div class="m-btn0 ${tag}">登 录</div>
+				</div>
+			</footer>
+		</div>
+	</div>		
+    </textarea>
+    <!-- 个人中心相关模板 -->
+    <textarea name="jst" id="m1-jst-0">
+	    <div class="g-content">
+			<div class="m-list ${tag}">
+			</div>
+			<div class="m-dwnmore ${tag}"><a href="#" >加载更多...</a></div>
+		</div>	
+    </textarea>
+    <textarea name="jst" id="m1-jst-1">
+		<div class="g-content m-writecnt">
+			<form>
+			 <textarea placeholder="说说你现在的心情" class="${tag}" maxLength="163"><&#47;textarea>
+			</form>
+		</div>
+		<footer>
+		<div class="act f-fs1">
+		  <div class="m-btn0 s-fc1 ${tag}">立即发布</div>
+		</div>
+		</footer>
+    </textarea>
+    <textarea name="jst" id="m1-jst-2">
+        <div class="g-content m-write">
+	        <form>
+	            <input type="text" placeholder="标题..." value="" class="${tag}" maxLength="255"/>
+	            <div class="cnt ${tag}">&nbsp;</div>
+	            <ul class="m-wimg f-cb ${tag}">
+	            </ul>
+	            <div class="m-wchk">
+	                <div class="itm"><span class="s-fc1">分 类：</span><em class="${tag}">默认分类</em></div>
+	            </div>
+	        </form>
+	    </div>
+	    <footer>
+	        <div class="act f-fs1">
+	        	<div class="m-btn0 ${tag}">发 布</div>
+	        </div>
+	    </footer>
+    </textarea>
+    
+    <textarea name="jst" id="m1-jst-3">
+	  <div class="g-content m-write">
+		<form>
+		  <div class="cnt">
+			<textarea class="m-box fs1 ${tag}" rows="8" placeholder="照片描述，非必填..."><&#47;textarea>
+			<div class="m-btn m-btnbig ${tag}" >立即上传</div>
+		  </div>
+		</form>
+	  </div>
+    </textarea>
+	<textarea name="jst" id="m1-jst-4">
+		<div class="g-content m-editphoto">
+	        <img class="${tag}" width="100%">
+	    </div>
+	    <footer>
+	        <div class="act actcenter">
+	            <div class="m-btn0 ${tag}" >插入到日志</div>
+	        </div>
+	    </footer>
+	</textarea>
+	<textarea name="jst" id="m1-jst-5">
+		<div class="g-content m-writecnt">
+	        <form>
+	            <textarea placeholder="正文..." class="${tag}"><&#47;textarea>
+	        </form>
+	    </div>
+	    <footer>
+	        <div class="act f-fs1">
+	            <div class="m-btn0 ${tag}" >完 成</div>
+	        </div>
+	    </footer>
+	</textarea>
+    <!-- 消息中心相关模板 -->
+
+    <textarea name="jst" id="m2-jst-2">
+		<div class="g-content">
+			<article class="m-list ${tag}">
+			</article>
+			<div class="m-dwnmore ${tag}"><a href="#" >加载更多...</a></div>
+		</div>		
+    </textarea>
+    <textarea name="jst" id="m2-jst-2a">
+	  {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+			<div class="itm">
+				{if itm.type == 1 || itm.type == 6}
+					<div class="w-face"><a href="#m=3&t=0&r=t&uname=${itm.msgUserName}"><img src="http://os.blog.163.com/common/ava.s?host=${itm.msgUserName}"/></a></div>
+					<div class="w-txtdesc">
+						<p class="w-notes"><time>${itm.publishTime|datetime}</time>
+							{if itm.responseCode == 102}
+								<span class="other w-allow">已接受</span>
+							{elseif itm.responseCode == 101}
+								<span class="other w-disallow">已忽略</span>
+							{/if}
+						</p>
+						<p class="cnt">${(itm.msgUserNickName||itm.msgUserName)|escape}&nbsp;&nbsp;邀请你成为博客好友{if itm.type == 1}并关注了你{/if}</p>
+						<p class="addcmt">附言：${itm.content|escape}</p>
+						{if itm.responseCode != 101 && itm.responseCode != 102}
+							<div class="act">
+								<button class="m-btn1 frd-acct-btn">接 受</button><button class="m-btn1 frd-rejt-btn">忽 略</button>
+								<input type="hidden" value="${itm.id}" >
+								<input type="hidden" value="${itm.msgUserId}" >
+							</div>
+						{/if}	
+					</div>
+				{elseif itm.type == 2}
+					<div class="w-face"><a href="#m=3&t=0&r=t&uname=${itm.msgUserName}"><img src="http://os.blog.163.com/common/ava.s?host=${itm.msgUserName}"/></a></div>
+					<div class="w-txtdesc">
+						<p class="w-notes"><time>${itm.publishTime|datetime}</time></p>
+						<p class="cnt">${(itm.msgUserNickName||itm.msgUserName)|escape}&nbsp;&nbsp;关注了你</p>
+					</div>
+				{elseif itm.type == 4}
+					<div class="w-face"><a href="#m=3&t=0&r=t&uname=${itm.msgUserName}"><img src="http://os.blog.163.com/common/ava.s?host=${itm.msgUserName}"/></a></div>
+					<div class="w-txtdesc">
+						<p class="w-notes"><time>${itm.publishTime|datetime}</time></p>
+						<p class="cnt">{if itm.msgUserNickName}${itm.msgUserNickName|escape}{else}${itm.msgUserName}{/if}&nbsp;&nbsp;已通过你的好友请求</p>
+					</div>
+				{elseif itm.type == 5}
+					<div class="w-face"><a href="#m=3&t=0&r=t&uname=${itm.msgUserName}"><img src="http://os.blog.163.com/common/ava.s?host=${itm.msgUserName}"/></a></div>
+					<div class="w-txtdesc">
+						<p class="w-notes"><time>${itm.publishTime|datetime}</time></p>
+						<p class="cnt">{if itm.msgUserNickName}${itm.msgUserNickName|escape}{else}${itm.msgUserName}{/if}&nbsp;&nbsp;来自“${itm.circleName|escape}”圈子</p>
+						<p class="cnt">${itm.content|escape}</p>
+					</div>
+				{elseif itm.type == 3}
+					<div class="w-face"><a href="#m=3&t=0&r=t&uname=${itm.msgUserName}"><img src="http://os.blog.163.com/common/ava.s?host=${itm.msgUserName}"/></a></div>
+					<div class="w-txtdesc">
+						<p class="w-notes"><time>${itm.publishTime|datetime}</time>
+							{if itm.responseCode == 201}
+								<span class="other w-allow">已接受</span>
+							{elseif itm.responseCode == 202}
+								<span class="other w-disallow">已忽略</span>
+							{/if}
+						</p>
+						<p class="cnt">${(itm.msgUserNickName||itm.msgUserName)|escape}&nbsp;&nbsp;邀请你加入“${itm.circleName|escape}”圈子</p>
+					</div>
+				{elseif itm.type >= 100}
+					<div>
+						<p class="w-notes"><time>${itm.publishTime|datetime}</time></p>
+						<p class="cnt">${itm.content}</p>
+					</div>
+				{/if}
+			</div>
+        {/list}
+      {/if}
+    </textarea>
+    <textarea name="jst" id="m2-jst-3">
+		<div class="g-content">
+			<article class="m-list ${tag}">
+			</article>
+			<div class="m-dwnmore ${tag}"><a href="#" >加载更多...</a></div>
+		</div>
+    </textarea>
+    <textarea name="jst" id="m2-jst-3a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+          	<div class="itm">
+          	<div class="w-face"><a href="#m=3&t=0&r=t&uname=${itm.msgUserName}"><img src="http://os.blog.163.com/common/ava.s?host=${itm.msgUserName}"/></a></div>
+          	{if itm.commentType == 1}
+				<a href="#m=6&t=0&uname=${itm.commentHostName}&bid=${itm.resourceId}&r=t" >
+			{elseif itm.commentType == 5}
+				<a href="#m=9&uname=${itm.commentHostName}&id=${itm.resourceId}&r=t" >
+			{else}
+				<a >
+			{/if}				
+				<div class="w-txtdesc">
+					<p class="w-notes2"><span>${(itm.msgUserNickName||itm.msgUserName)|escape}</span><time>${itm.publishTime|datetime}</time></p>
+					<p>${itm.content}</p>
+					{if itm.commentType == 1}
+						<p class="w-notes2">来自日志：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 2 || itm.commentType == 6}
+						<p class="w-notes2">来自相册：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 3 || itm.commentType == 7}
+						<p class="w-notes2">来自相片：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 5}
+						<p class="w-notes2">来自心情：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 4}
+						<p class="w-notes2">来自音乐：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 8}
+						<p class="w-notes2">来自组图：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 9}
+						<p class="w-notes2">来自投票：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 10}
+						<p class="w-notes2">来自活动：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 11}
+						<p class="w-notes2">来自：“${itm.resName|escape}”</p>
+					{/if}
+				</div>
+			</a>
+		  </div>
+        {/list}
+      {/if}
+    </textarea>
+    <textarea name="jst" id="m2-jst-4">
+		<div class="g-content">
+			<article class="m-list ${tag}">
+			</article>
+			<div class="m-dwnmore ${tag}"><a href="#" >加载更多...</a></div>
+		</div>
+    </textarea>
+    <textarea name="jst" id="m2-jst-4a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+          	<div class="itm">
+          	<div class="w-face"><a href="#m=3&t=0&r=t&uname=${itm.msgUserName}"><img src="http://os.blog.163.com/common/ava.s?host=${itm.msgUserName}"/></a></div>
+          	{if itm.commentType == 1}
+				<a href="#m=6&t=0&uname=${itm.commentHostName}&bid=${itm.resourceId}&r=t" >
+			{elseif itm.commentType == 5}
+				<a href="#m=9&uname=${itm.commentHostName}&id=${itm.resourceId}&r=t" >
+			{else}
+				<a >
+			{/if}				
+				<div class="w-txtdesc">
+					<div class="w-notes2">
+						<div class="top">
+							<span>${(itm.msgUserNickName||itm.msgUserName)|escape}</span>
+							<small class="tiptxt">&nbsp;&nbsp;回复</small>
+						</div>
+						<time>${itm.publishTime|datetime}</time>
+					</div>
+					<p>${itm.content}</p>
+					{if itm.commentType == 1}
+						<p class="w-notes2">来自日志：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 2 || itm.commentType == 6}
+						<p class="w-notes2">来自相册：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 3 || itm.commentType == 7}
+						<p class="w-notes2">来自相片：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 5}
+						<p class="w-notes2">来自心情：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 4}
+						<p class="w-notes2">来自音乐：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 8}
+						<p class="w-notes2">来自组图：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 9}
+						<p class="w-notes2">来自投票：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 10}
+						<p class="w-notes2">来自活动：“${itm.resName|escape}”</p>
+					{elseif itm.commentType == 11}
+						<p class="w-notes2">来自：“${itm.resName|escape}”</p>
+					{/if}
+				</div>
+			</a>
+		  </div>
+        {/list}
+      {/if}
+    </textarea>
+
+    <textarea name="jst" id="m2-jst-5">
+		<div class="g-content">
+			<article class="m-list ${tag}">
+			</article>
+			<div class="m-dwnmore ${tag}"><a href="#" >加载更多...</a></div>
+		</div>
+    </textarea>
+    <textarea name="jst" id="m2-jst-5a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+          <div class="itm">
+          	<a class="w-face" href="#m=3&t=0&r=t&uname=${itm.msgUserName}"><img src="http://os.blog.163.com/common/ava.s?host=${itm.msgUserName}"/></a>
+			<a href="#m=2&t=8&nid=${itm.noteId}&nuid=${itm.msgUserId}">				
+				<div class="w-txtdesc">
+					<div class="w-notes2">
+						<div class="top">
+							<span>{if itm.msgUserNickName}${itm.msgUserNickName|escape}{else}${itm.msgUserName}{/if}</span>
+							<small class="tiptxt">&nbsp;&nbsp;留言</small>
+						</div>
+						<time>${itm.publishTime|datetime}</time>
+					</div>
+					<p>${itm.content}</p>
+				</div>
+			</a>
+		  </div>
+        {/list}
+      {/if}
+    </textarea>
+        
+    <!-- 博客相关模板 -->
+    <textarea name="jst" id="m3-jst-a">
+		<div class="m-personinfo">
+			<div class="w-face"><img src="http://os.blog.163.com/common/ava.s?host=${user.userName}" /></div>
+			<div class="w-txtdesc">
+				<h2>${(user.nickName||user.userName)|escape}</h2>
+                {if isEdit}
+                	<p class="w-notes">今日访问量：${user.todayCount||0}</p>
+                {elseif 'friend' == user.friendStatus}
+                	<p class="w-notes">博友</p>
+                {elseif ('follow' == user.followStatus)}
+                	<p class="w-notes">已关注</p>
+                {else}
+                	<p class="w-notes">未关注</p>
+                {/if}				
+			</div>
+			<div class="w-pmore"></div>
+		</div>
+		<nav class="m-blognav">
+			<a href="#m=3&t=0{if !isEdit}&uname=${user.userName}{/if}"><span {if idx==0}class="js-crt"{/if}>日志<em></em></span></a>
+			<a href="#m=3&t=1{if !isEdit}&uname=${user.userName}{/if}"><span {if idx==1}class="js-crt"{/if}>相册<em></em></span></a>
+			<a href="#m=3&t=2{if !isEdit}&uname=${user.userName}{/if}"><span {if idx==2}class="js-crt"{/if}>心情<em></em></span></a>
+			<a href="#m=3&t=3{if !isEdit}&uname=${user.userName}{/if}"><span {if idx==3}class="js-crt"{/if}>博友<em></em></span></a>
+		</nav>
+    </textarea>
+    <textarea name="jst" id="m3-jst-0">
+	    <div class="g-content">
+			<div class="m-list ${tag}">
+			</div>
+			<div class="m-dwnmore ${tag}"><a href="#" >加载更多...</a></div>
+		</div>	
+    </textarea>
+    <textarea name="jst" id="m3-jst-0a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+			<a class="itm" href="#m=6&t=0&uname=${ext.uname}&bid=${itm.id}">
+				<h2>${itm.title|escape}</h2>
+				<p class="w-notes"><time>${itm.publishTime|datetime}</time><span class="other">{if !!itm.hasImg}<img src="../images/ic_image.png"/>{/if}评论<span class="num">(${itm.commentCount||0})</span></span></p>
+			</a>
+        {/list}
+      {/if}
+    </textarea>
+    <textarea name="jst" id="m3-jst-1">
+	    <div class="g-content">
+			<div class="m-list1 ${tag}">
+			</div>
+			<div class="m-dwnmore ${tag}"><a href="#" >加载更多...</a></div>
+		</div>	        
+    </textarea>
+    <textarea name="jst" id="m3-jst-1a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+			<a class="itm" href="#m=11&t=0&aid=${itm.id}{if !ext.isEdit}&uname=${ext.uname}{/if}">
+				<div class="w-photo"><img src="${itm.coverurl|default:'../images/albumcover.png'}"/></div>
+				<div class="w-txtdesc1">
+					<h2>${itm.name|escape}<span class="num">(${itm.count||0})</span></h2>
+					<p class="w-notes"><time>${itm.lastUploadTime|datetime}</time></p>
+				</div>
+			</a>
+        {/list}
+      {/if}
+    </textarea>
+    <textarea name="jst" id="m3-jst-3">
+		<div class="m-list m-singlelinelist ${tag}">
+			<a class="itm ${tag}" href="#"><h2>博友<span class="num ${tag}"></span></h2></a>
+			<a class="itm ${tag}" href="#"><h2>关注<span class="num ${tag}"></span></h2></a>
+			<a class="itm ${tag}" href="#"><h2>被关注<span class="num ${tag}"></span></h2></a>
+			<a class="itm ${tag}" href="#"><h2>最近来访</h2></a>
+			<a class="itm ${tag}" href="#"><h2>最近走访</h2></a>
+		</div>
+    </textarea>
+    <!--心情列表-->
+    <textarea name="jst" id="m3-jst-2">
+        <div class="g-content">
+			<div class="m-list ${tag}">
+			</div>
+			<div class="m-dwnmore"><a href="#" class="${tag}">加载更多...</a></div>
+		</div>
+    </textarea>
+    <textarea name="jst" id="m3-jst-2a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+			<a class="itm" href="#m=9&uname=${ext.uname}&id=${itm.id}">
+				<p>${itm.content}</p>
+				<p class="w-notes"><time>${itm.publishTime|datetime}</time><span class="other">{if itm.hasImg}<img src="../images/ic_image.png" />{/if}评论<span class="num">(${itm.commentCount||0})</span></span></p>
+			</a>          
+        {/list}
+      {/if}
+    </textarea>
+    <!--心情列表end-->
+    <!-- 其他相关模板 -->
+    
+    <textarea name="jst" id="m4-jst-0">
+		<div class="g-content">
+			<div class="m-list m-singlelinelist ${tag}">
+				<a class="itm" href="#m=4&t=1" style="display:none;"><h2>日志草稿<span class="num ${tag}"></span></h2></a>
+				<a class="itm" href="#m=4&t=5"><h2>设置</h2></a>
+				<a class="itm" href="#m=8"><h2>反馈</h2></a>
+				<a class="itm" href="#m=4&t=7"><h2>关于</h2></a>
+				<a class="itm ${tag}" href="#"><h2>注销</h2></a>
+			</div>
+		</div>
+    </textarea>
+      
+    <textarea name="jst" id="m4-jst-1">
+		<div class="g-content">
+			<div class="m-bar">共 <em class="${tag}"></em> 篇</div>
+			<article class="m-list ${tag}">
+			</article>
+			<div class="m-dwnmore ${tag}"><a href="#" >加载更多...</a></div>
+		</div>
+    </textarea>
+    <textarea name="jst" id="m4-jst-1a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+			<a class="itm" href="#m=6&t=0&draft=1&bid=${itm.id}">
+				<h2>${itm.title|escape}</h2>
+				<p class="w-notes"><time>${itm.publishTime|datetime}</time></p>
+			</a>
+        {/list}
+      {/if}
+    </textarea>
+    
+    <textarea name="jst" id="m4-jst-5">
+		<div class="g-content">
+			<article class="m-list">
+				<a class="itm" onclick="mb.m.m4.f(event)">
+					<p>新消息通知</p>
+					<p class="w-notes">收到新消息时，通过状态栏通知我</p>
+					<div class="act"><div class="m-chkbox ${tag}"><input type="checkbox"/></div></div>
+				</a>
+				<a class="itm" onclick="mb.m.m4.f1(event)">
+					<p>通知音</p>
+					<p class="w-notes ${tag}">&nbsp;</p>
+					<div class="act"><div class="w-pmore"></div></div>
+				</a>
+				<a class="itm" onclick="mb.m.m4.f2(event)">
+					<p>振动</p>
+					<p class="w-notes">通知时，同时振动手机</p>
+					<div class="act"><div class="m-chkbox ${tag}"><input type="checkbox"/></div></div>
+				</a>
+			</article>
+		</div>      
+    </textarea>
+
+    <textarea name="jst" id="m4-jst-7">
+      <div class="g-content">
+	      <div class="g-cnt">
+	        <p>&nbsp;&nbsp;&nbsp;&nbsp;本软件适用于Android2.0及以上固件。如在其他手机系统上使用本软件，对于出现的任何问题，网易公司不承担责任。</p>
+	        <p>&nbsp;&nbsp;&nbsp;&nbsp;本软件是由网易公司开发，未经网易授权并正式发布的其它任何本软件衍生的软件均属非法，下载、安装、使用此类软件，将可能导致不可预知的风险。由此产生的一切法律责任与纠纷一概与网易无关。</p>
+	        <p>&nbsp;&nbsp;&nbsp;&nbsp;用户不得使用本软件发表、传送、储存违反国家法律、危害国家安全、祖国统一、社会稳定的内容。或任何不当的、侮辱诽谤的、淫秽的、暴力的及任何违反国家法律法规政策的内容。不得制造虚假身份以误导、欺骗或利用本软件批量发表、传送、传播广告信息。否则，网易有权终止用户使用。</p>
+	        <p>&nbsp;&nbsp;&nbsp;&nbsp;版本号：V1.0.1（测试版）</p>
+	        <div class="act">&nbsp;&nbsp;&nbsp;&nbsp;网易博客：<a href="http://blog.163.com/" class="fc0">blog.163.com</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;客服电话：<a href="tel:020-83568090" class="fc0">020-83568090</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="../images/logo.png" />&nbsp;&copy;2012 Netease</div>
+	      </div>
+      </div>
+    </textarea>
+    <!--我的博客总页面-->
+	<textarea name="jst" id="m5-jst-0">
+	<div class="g-content">
+      <div class="w-textlist m-singlelinelist ${tag}">
+			<a href="#" class="${tag}">我的博友<span class="num ${tag}"></span></a>
+			<a href="#" class="${tag}">关注<span class="num ${tag}"></span></a>
+			<a href="#" class="${tag}">被关注<span class="num ${tag}"></span></a>
+			<a href="#" class="${tag}">最近来访</a>
+			<a href="#" class="${tag}">最近走访</a>
+	  </div>
+	</div>
+    </textarea>
+    <!--我的博客总页面end-->
+    <!--m5&t=1 or t=3 or t=4  我的博友、我关注的人、关注我的人-->
+    <textarea name="jst" id="m5-jst-134">
+		<div class="g-content">
+			<div class="m-bar">共 <em class="${tag}"></em> 位</div>
+				<article class="m-list ${tag}">
+				</article>
+			<div class="m-dwnmore"><a href="#" class="${tag}">加载更多...</a></div>
+		</div>
+    </textarea>
+    <textarea name="jst" id="m5-jst-134a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+			<a class="itm" href="#m=3&t=0&uname=${itm.userName}">
+				<div class="w-face"><img src="http://os.blog.163.com/common/ava.s?host=${itm.userName}" /></div>
+				<div class="w-txtdesc">
+					<h2>${(itm.nickName||itm.userName)|escape}</h2>
+					<p class="w-notes"><time>最近于 ${itm.spaceUpdateTime|datetime} 更新</time></p>
+				</div>
+			</a>
+        {/list}
+      {/if}
+    </textarea>
+    <!--m5&t=1 or t=3 or t=4  我的博友、我关注的人、关注我的人 end-->
+    
+    <!--m5&t=5 or t=6  最近来访，最近走访-->
+    <textarea name="jst" id="m5-jst-56">
+		<div class="g-content">
+			<article class="m-list ${tag}">
+			</article>
+			<div class="m-dwnmore"><a href="#" class="${tag}">加载更多...</a></div>
+		</div>
+    </textarea>
+    <textarea name="jst" id="m5-jst-5a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+			<a class="itm" href="#m=3&t=0&uname=${itm.userName}">
+				<div class="w-face"><img src="http://os.blog.163.com/common/ava.s?host=${itm.userName}" /></div>
+				<div class="w-txtdesc">
+					<h2>${(itm.nickname||itm.userName)|escape}</h2>
+					<p class="w-notes"><time>${itm.visitTime|datetime} 来访</time></p>
+				</div>
+			</a>
+        {/list}
+      {/if}
+    </textarea>
+    <textarea name="jst" id="m5-jst-6a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+			<a class="itm" href="#m=3&t=0&uname=${itm.userName}">
+				<div class="w-face"><img src="http://os.blog.163.com/common/ava.s?host=${itm.userName}" /></div>
+				<div class="w-txtdesc">
+					<h2>${(itm.nickname||itm.userName)|escape}</h2>
+					<p class="w-notes"><time>${itm.visitTime|datetime} 走访</time></p>
+				</div>
+			</a>          
+        {/list}
+      {/if}
+    </textarea>
+    <!--m5&t=5 or t=6   最近来访，最近走访 end-->
+    
+    
+	<textarea name="jst" id="m5-jst-2">
+      <!--<header><h1 class="f-th">附近的博客</h1></header>-->
+      <div class="g-content">
+        <!--<div class="m-bar"><img src="../images/ic_location.png"/><span class="${tag}">位于滨江滨安路附近</span></div>-->
+        <div class="${tag}"></div>
+        <a href="#" class="m-dwnmore m-listitm fc2 ${tag}">轻击加载更多...</a>
+      </div>
+    </textarea>
+    <textarea name="jst" id="m5-jst-2a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+          {var itm = xlist[x]}
+          <div class="m-listitm">
+            <div class="m-face"></div>
+            <div class="info">
+              <p class="cnt">xxx</p>
+              <p class="fc1">2分钟前</p>
+              <p class="fc1">已关注</p>
+            </div>
+          </div>
+        {/list}
+      {/if}
+    </textarea>
+    <!--m6:日志详细页-->
+    <textarea name="jst" id="m6-jst-0">
+		<div id="m6-wrap" class="g-content">
+			<div class="m-personinfo">
+				<div class="w-face"><a href="#"><img class="${tag}" /></a></div>
+				<div class="w-txtdesc">
+					<h2 class="${tag}"></h2>
+					<p class="w-notes"><time class="${tag}"></time><span class="other">评论<span class="s-fc2 ${tag}"></span></span></p>
+				</div>
+			</div>
+			<article class="m-cntbox">
+				<div class="m-bloguparr"><span></span></div>
+				<div class="cnt">
+					<h2 class="${tag}"></h2>
+					<div class="xnt ${tag}">
+						<div class="m-dwnmore">
+		                    <a>
+		                        <div class="m-refresh">
+		                            <div class="dot dot0"></div>
+		                            <div class="dot dot1"></div>
+		                            <div class="dot dot2"></div>
+		                            <div class="dot dot3"></div>
+		                            <div class="dot dot4"></div>
+		                            <div class="dot dot5"></div>
+		                        </div>
+		                                                            正在加载
+		                    </a>
+	                    </div>
+					</div>
+					<!--  按钮移动到titlebar 上了
+					<div class="m-act" >
+						<button  class="m-btn1 ${tag}"><span class="m-delete">删 除</span></button>
+						<button  class="m-btn1 ${tag}"><span class="m-recomm">推 荐</span></button>
+					</div>
+					-->
+				</div>
+				<div style="display:none" class="cmtbox ${tag}"></div>
+			</article>
+		</div>
+	</textarea>
+	<!--m6-1 发送推荐的消息-->
+    <textarea name="jst" id="m16-jst-1">
+		<div class="g-content m-writecnt">
+			<form>
+			 <textarea placeholder="推荐语（选填）..." class="${tag}"><&#47;textarea>
+			</form>
+		</div>
+		<footer>
+		<div class="act f-fs1">
+		  <div class="m-btn0 ${tag}" >立即推荐</div>
+		</div>
+		</footer>
+    </textarea>
+    <!--m7:发布日志评论-->
+    <textarea name="jst" id="m7-jst-1">
+		<div class="g-content m-writecnt">
+			<form>
+			 <textarea placeholder="" class="${tag}"><&#47;textarea>
+			</form>
+		</div>
+		<footer>
+		<div class="act f-fs1">
+		  <div class="m-btn0 ${tag}" >立即发布</div>
+		</div>
+		</footer>
+    </textarea>
+    <!--m7:发布日志评论end-->
+    <!--m9:日志详细页-->
+    <textarea name="jst" id="m9-jst-0">
+		<div class="g-content">
+			<div class="m-personinfo">
+				<div class="w-face"><a href="#"><img class="${tag}" /></a></div>
+				<div class="w-txtdesc">
+					<h2 class="${tag}"></h2>
+					<p class="w-notes"><time class="${tag}"></time><span class="other">评论<span class="s-fc2 ${tag}"></span></span></p>
+				</div>
+			</div>
+			<article class="m-cntbox">
+				<div class="m-bloguparr"><span></span></div>
+				<div class="cnt">
+					<div class="xnt ${tag}">
+						<div class="m-dwnmore">
+		                    <a>
+		                        <div class="m-refresh">
+		                            <div class="dot dot0"></div>
+		                            <div class="dot dot1"></div>
+		                            <div class="dot dot2"></div>
+		                            <div class="dot dot3"></div>
+		                            <div class="dot dot4"></div>
+		                            <div class="dot dot5"></div>
+		                        </div>
+		                                                            正在加载
+		                    </a>
+	                    </div>
+					</div>
+					<div class="m-act" style="display:none;" >
+					  <button style="display:none;" class="m-btn1 ${tag}"><span class="m-delete">删 除</span></button>
+					  <button style="display:none;" class="m-btn1"><span class="m-edit">编 辑</span></button>
+					</div>
+				</div>
+				<div style="display:none" class="cmtbox ${tag}"></div>
+			</article>
+		</div>
+	</textarea>
+    <!--m9:日志详细页end-->
+    <!--m10:发布心情评论-->
+    <textarea name="jst" id="m10-jst-1">
+		<div class="g-content m-writecnt">
+			<form>
+			 <textarea placeholder="" class="${tag}"><&#47;textarea>
+			</form>
+		</div>
+		<footer>
+		<div class="act f-fs1">
+		  <div class="m-btn0 ${tag}" >立即发布</div>
+		</div>
+		</footer>
+    </textarea>
+    <!--10:发布心情评论end-->
+    <!--m12:个人资料-->
+    <textarea name="jst" id="m12-jst">
+		<div class="g-content">
+			<div class="m-personinfo">
+				<div class="w-face"><img class="${tag}"/></div>
+				<div class="w-txtdesc"><h2 class="${tag}">个人资料</h2></div>
+			</div>
+			<article class="m-cntbox ${tag}">
+			</article>
+			<div class="m-statistics"><h2>博客统计</h2></div>
+			<article class="m-cntbox ${tag}">
+			</article>
+		</div>
+    </textarea>
+    <textarea name="jst" id="m12-jst-1">
+    	<div class="m-bloguparr"><span></span></div> 
+      {if user!=null}
+		<ul class="cnt">
+			<li><span>真实姓名：</span>${user.realname}</li>
+			<li><span>性别：</span>${user.gender}</li>
+			<li><span>生日：</span>${user.birthDay}</li>
+			<li><span>星座：</span>${user.constellation}</li>
+			<li><span>自我介绍：</span>${user.selfIntro}</li>	
+		</ul>
+      {else}
+        <p>暂时无法载入用户信息</p>
+      {/if}
+    </textarea>
+    <textarea name="jst" id="m12-jst-2">
+    	<div class="m-bloguparr"><span></span></div> 
+      {if bloginfo!=null}
+		<ul class="cnt">
+			<li><span>等级：</span>${bloginfo.bgsGrade}</li>
+			<li><span>积分：</span>${bloginfo.totalScore}</li>
+			<li><span>今日访问：</span>${bloginfo.todayCount}</li>
+			<li><span>总访问量：</span>${bloginfo.totalCount}</li>
+		</ul>
+      {else}
+        <p>暂时无法载入博客统计信息</p>
+      {/if}
+    </textarea>
+     <!--m13-0 发送消息-->
+    <textarea name="jst" id="m13-jst-0">
+		<div class="g-content m-writecnt">
+			<form>
+			 <textarea placeholder="消息内容..." class="${tag}"><&#47;textarea>
+			</form>
+		</div>
+		<footer>
+		<div class="act f-fs1">
+		  <div class="m-btn0 ${tag}" >立即发布</div>
+		</div>
+		</footer>
+    </textarea>
+    <!--m13-1 加博友操作-->
+    <textarea name="jst" id="m13-jst-1">
+		<div class="g-content">
+			<article class="m-attention" >
+				<div class="form">
+					<div class="m-class m-btn1 m-btn1-b ${tag}"><button><span class="${tag}" >未分组博友</span></button></div>
+					<textarea placeholder="附言，非必填" class="m-input ${tag}" ><&#47;textarea>
+				</div>
+				<div class="act"><div class="m-btn1 ${tag}" />发送请求</div></div>
+			</article>
+		</div>
+    </textarea>
+    <!-- m14 留言 begin-->
+    <textarea name="jst" id="m14-jst-0">
+		<div class="g-content">
+			<div class="m-addarea"><a href="#" class="m-input">添加新留言...</a></div>
+			<article class="m-list ${tag}">
+			</article>
+			<div class="m-dwnmore ${tag}"><a href="#" >加载更多...</a></div>		
+		</div>
+    </textarea>    
+    <textarea name="jst" id="m14-jst-0a">
+      {if xlist.length>0}
+        {list beg..end-1 as x}
+        {var itm = xlist[x]}
+			<a class="itm">
+				<div class="w-face"><img src="http://os.blog.163.com/common/ava.s?host=${itm.publisherName}"/></div>
+				<div class="w-txtdesc">
+					<p class="w-notes2"><span>${itm.publisherNickName || itm.publisherName}：</span><time>${itm.publishTime|datetime}</time></p>
+					<p>${itm.content}</p>
+				</div>
+				{if !!itm.replyContent}
+					<div class="itm repeat">
+						<div class="w-face"><img src="http://os.blog.163.com/common/ava.s?host=${itm.replyPublisherName}"/></div>
+						<div class="w-txtdesc">
+							<p class="w-notes2"><span>${itm.replyPublisherNickName || itm.replyPublisherName}：</span><time>${itm.replyNotePublishTime|datetime}</time></p>
+							<p>${itm.replyContent}</p>
+						</div>
+					</div>
+				{/if}
+			</a>
+        {/list}
+      {/if}
+    </textarea>
+    <textarea name="jst" id="m14-jst-1">
+		<div class="g-content m-writecnt">
+			<form>
+				<textarea placeholder="留言内容..." class="${tag}"><&#47;textarea>
+			</form>
+		</div>
+		<footer>
+			<div class="act f-fs1">
+				<div class="m-btn0 s-fc1 ${tag}" >立即发布</div>
+			</div>
+		</footer>    
+    </textarea>
+    <!-- m14 留言 end-->
+
+<!-- 错误页面 begin-->
+    <textarea name="jst" id="m15-jst-0">
+      <!--<header><h1>关于<span class="note fc1">(版本号：20101028a)</span></h1></header>-->
+      <div class="g-content">
+	      <div class="g-cnt">
+	        <p class="${tag}">网易博客android客户端V1.0暂不支持群博客访问，请通过电脑访问该博客，感谢您的支持！</p>
+	        <div class="act">网易博客：<a href="http://blog.163.com/" class="fc0">blog.163.com</a><br/>客服电话：<a href="tel:020-83568090" class="fc0">020-83568090</a></div>
+	      </div>
+      </div>
+      <footer class="fc1 g-cnt">&copy;2011 网易公司</footer>
+    </textarea>    
+<!-- 错误页面 end-->    
+  </div>
+  <script type="text/javascript">
+    (function(){
+        document.writeln('<script type="text/javascript" src="../javascript/gen/lib.min.js"  charset="utf-8"></sc'+'ript>');
+        document.writeln('<script type="text/javascript" src="../javascript/gen/pro.min.js"  charset="utf-8"></sc'+'ript>');
+    })();
+  </script>
+  
+</body>
+</html>
