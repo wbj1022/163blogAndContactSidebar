@@ -58,7 +58,7 @@ public class AlphabetIndexer extends View implements SectionIndexer {
 	@Override
 	public int getPositionForSection(int section) {
 		if(section < 0 || mPosition == null) {
-			return -1;
+			return -2;
 		}
 		return mPosition[section];
 	}
@@ -98,12 +98,12 @@ public class AlphabetIndexer extends View implements SectionIndexer {
 				setBackgroundColor(Color.parseColor("#604F4F4F"));
 				toastView.setVisibility(View.VISIBLE);
 				toastView.setText(ABC_STRING[index]);
-				contactListView.setSelection(position);
+				contactListView.setSelection(position + 1);
 				break;
 			case MotionEvent.ACTION_MOVE:
 				setBackgroundColor(Color.parseColor("#604F4F4F"));
 				toastView.setText(ABC_STRING[index]);
-				contactListView.setSelection(position);
+				contactListView.setSelection(position + 1);
 				break;
 			default:
 				toastView.setVisibility(View.GONE);

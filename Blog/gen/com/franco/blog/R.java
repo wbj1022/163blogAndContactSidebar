@@ -14,18 +14,19 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int btn_bg=0x7f020000;
-        public static final int btn_del_normal=0x7f020001;
-        public static final int btn_del_pressed=0x7f020002;
-        public static final int contact_default_pic=0x7f020003;
-        public static final int contacts_toast_bg=0x7f020004;
-        public static final int del_btn=0x7f020005;
-        public static final int ic_action_search=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
-        public static final int icon_remove_normal=0x7f020008;
-        public static final int icon_remove_pressed=0x7f020009;
-        public static final int img_list_background=0x7f02000a;
-        public static final int sf_wallpaper_03=0x7f02000b;
+        public static final int android=0x7f020000;
+        public static final int btn_bg=0x7f020001;
+        public static final int btn_del_normal=0x7f020002;
+        public static final int btn_del_pressed=0x7f020003;
+        public static final int contact_default_pic=0x7f020004;
+        public static final int contacts_toast_bg=0x7f020005;
+        public static final int del_btn=0x7f020006;
+        public static final int ic_action_search=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int icon_remove_normal=0x7f020009;
+        public static final int icon_remove_pressed=0x7f02000a;
+        public static final int img_list_background=0x7f02000b;
+        public static final int sf_wallpaper_03=0x7f02000c;
     }
     public static final class id {
         public static final int account=0x7f080000;
@@ -48,10 +49,13 @@ public final class R {
         public static final int draft_list=0x7f08000b;
         public static final int head_icon=0x7f08000d;
         public static final int id=0x7f080003;
-        public static final int menu_settings=0x7f08001e;
+        public static final int menu_settings=0x7f080021;
         public static final int new_diary=0x7f080009;
         public static final int password=0x7f080007;
         public static final int publish=0x7f08001a;
+        public static final int pull_to_refresh=0x7f08001e;
+        public static final int pull_to_refresh_head_view=0x7f08001f;
+        public static final int pull_to_refresh_image=0x7f080020;
         public static final int save=0x7f08001b;
         public static final int side_bar=0x7f080010;
         public static final int title=0x7f080013;
@@ -67,6 +71,7 @@ public final class R {
         public static final int draft_list=0x7f030003;
         public static final int list_item=0x7f030004;
         public static final int new_diary=0x7f030005;
+        public static final int pull_to_refresh=0x7f030006;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;
@@ -83,11 +88,14 @@ public final class R {
         public static final int drafts=0x7f050013;
         public static final int edit_content=0x7f050010;
         public static final int hello_world=0x7f050002;
+        public static final int loading=0x7f050019;
         public static final int login=0x7f050009;
         public static final int menu_settings=0x7f050003;
         public static final int new_diary=0x7f05000b;
         public static final int password=0x7f050008;
         public static final int publish=0x7f050011;
+        public static final int pull_to_refresh=0x7f050017;
+        public static final int release_to_refresh=0x7f050018;
         public static final int save=0x7f050012;
         public static final int side_bar=0x7f050001;
         public static final int title=0x7f05000d;
