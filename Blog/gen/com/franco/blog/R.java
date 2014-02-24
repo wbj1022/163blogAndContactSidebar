@@ -54,8 +54,8 @@ public final class R {
         public static final int password=0x7f080007;
         public static final int publish=0x7f08001a;
         public static final int pull_to_refresh=0x7f08001e;
-        public static final int pull_to_refresh_head_view=0x7f08001f;
-        public static final int pull_to_refresh_image=0x7f080020;
+        public static final int pull_to_refresh_head_view=0x7f080020;
+        public static final int pull_to_refresh_image=0x7f08001f;
         public static final int save=0x7f08001b;
         public static final int side_bar=0x7f080010;
         public static final int title=0x7f080013;
