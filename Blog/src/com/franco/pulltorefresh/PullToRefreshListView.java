@@ -30,7 +30,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 	private int mHeadViewHeight;
 	private int mRefreshViewHeight;
 	private int mRefreshState;
-	private boolean mBounceHack;
+	//private boolean mBounceHack;
 
 	private RotateAnimation mFlipAnimation;
 	private RotateAnimation mReverseFlipAnimation;
@@ -104,7 +104,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		mBounceHack = false;
+		//mBounceHack = false;
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_UP:
 			if (getFirstVisiblePosition() == 0) {
@@ -179,7 +179,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 		} else if (mCurrentScrollState == SCROLL_STATE_FLING // 如果是自己滚动状态
 				&& firstVisibleItem == 0 && mRefreshState != REFRESHING) {
 			setSelection(1);
-			mBounceHack = true; // 状态为回弹
+			//mBounceHack = true; // 状态为回弹
 		}
 		if (mOnScrollListener != null) {
 			mOnScrollListener.onScroll(view, firstVisibleItem,
@@ -192,7 +192,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 
 		mCurrentScrollState = scrollState;
 		if (mCurrentScrollState == SCROLL_STATE_IDLE) { // 如果滚动停顿
-			mBounceHack = false;
+			//mBounceHack = false;
 		}
 
 		if (mOnScrollListener != null) {

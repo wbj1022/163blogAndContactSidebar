@@ -8,11 +8,12 @@ import android.graphics.Paint.FontMetricsInt;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
-public class AlphabetIndexer extends View implements SectionIndexer {
+public class AlphabetIndexer extends View implements SectionIndexer, OnTouchListener{
 
 	private final String[] ABC_STRING = { "#", "A", "B", "C", "D", "E", "F",
 			"G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
@@ -38,7 +39,7 @@ public class AlphabetIndexer extends View implements SectionIndexer {
 		paint.setAntiAlias(true);
 		mFmi = paint.getFontMetricsInt();
     	mLabelHeight = mFmi.bottom - mFmi.top;
-		setOnTouchListener(mListener);
+    	super.setOnTouchListener(this);
 	}
 
 	@Override
@@ -84,34 +85,31 @@ public class AlphabetIndexer extends View implements SectionIndexer {
 		return -1;
 	}
 
-	private View.OnTouchListener mListener = new OnTouchListener() {
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		// TODO Auto-generated method stub
+		int index = getCurrentSection(event.getY());
+		int section = getSectionForIndex(index);
+		int position = getPositionForSection(section);
 
-		@Override
-		public boolean onTouch(View v, MotionEvent event) {
-			// TODO Auto-generated method stub
-			int index = getCurrentSection(event.getY());
-			int section = getSectionForIndex(index);
-			int position = getPositionForSection(section);
-			
-			switch (event.getAction()) {
-			case MotionEvent.ACTION_DOWN:
-				setBackgroundColor(Color.parseColor("#604F4F4F"));
-				toastView.setVisibility(View.VISIBLE);
-				toastView.setText(ABC_STRING[index]);
-				contactListView.setSelection(position + 1);
-				break;
-			case MotionEvent.ACTION_MOVE:
-				setBackgroundColor(Color.parseColor("#604F4F4F"));
-				toastView.setText(ABC_STRING[index]);
-				contactListView.setSelection(position + 1);
-				break;
-			default:
-				toastView.setVisibility(View.GONE);
-				setBackgroundColor(Color.parseColor("#00000000"));
-			}
-			return true;
+		switch (event.getAction()) {
+		case MotionEvent.ACTION_DOWN:
+			setBackgroundColor(Color.parseColor("#604F4F4F"));
+			toastView.setVisibility(View.VISIBLE);
+			toastView.setText(ABC_STRING[index]);
+			contactListView.setSelection(position + 1);
+			break;
+		case MotionEvent.ACTION_MOVE:
+			setBackgroundColor(Color.parseColor("#604F4F4F"));
+			toastView.setText(ABC_STRING[index]);
+			contactListView.setSelection(position + 1);
+			break;
+		default:
+			toastView.setVisibility(View.GONE);
+			setBackgroundColor(Color.parseColor("#00000000"));
 		}
-	};
+		return true;
+	}
 	
 	public void setToastView(TextView toastView) {
 		this.toastView = toastView;
@@ -141,13 +139,15 @@ public class AlphabetIndexer extends View implements SectionIndexer {
 		if(index < 0) {
 			index = 0;
 		}
-		
 		return index;
 	}
+	
+	
 
 	@Override
 	public Object[] getSections() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }
