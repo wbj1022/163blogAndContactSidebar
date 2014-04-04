@@ -30,6 +30,11 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 	private int mHeadViewHeight;
 	private int mRefreshViewHeight;
 	private int mRefreshState;
+	private int startLineNum;
+	private int endLineNum;
+	private float startTouchX;
+	private float endTouchX;
+	private View itemView;
 	//private boolean mBounceHack;
 
 	private RotateAnimation mFlipAnimation;
@@ -44,20 +49,23 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 	private OnRefreshListener mOnRefreshListener;
 
 	public interface OnRefreshListener {
-
 		public void onRefresh();
 	}
 
 	public PullToRefreshListView(Context context) {
-		super(context);
-
+		this(context, null);
 	}
 
 	public PullToRefreshListView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		init(context);
+		this(context, attrs, 0);
 	}
 
+	public PullToRefreshListView(Context context, AttributeSet attrs,
+			int defStyle) {
+		super(context, attrs, defStyle);
+		init(context);
+	}
+	
 	private void init(Context context) {
 
 		mFlipAnimation = new RotateAnimation(0, 359,
@@ -102,6 +110,30 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 		setSelection(1);
 	}
 
+	public boolean dispatchTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+        case MotionEvent.ACTION_DOWN: {
+			startTouchX = event.getX();
+			startLineNum = getLineNumForPisition(event.getY());
+            break;
+        }
+        case MotionEvent.ACTION_MOVE: {
+			endLineNum = getLineNumForPisition(event.getY());
+			endTouchX = event.getX();
+			if(startLineNum == endLineNum) {
+				if(startTouchX - endTouchX > 50) {
+					itemView = getChildAt(getFirstVisiblePosition() + startLineNum);
+				}
+			}
+            break;
+        }
+        case MotionEvent.ACTION_UP:
+            break;
+        }
+  
+        return super.dispatchTouchEvent(event);
+    }
+	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		//mBounceHack = false;
@@ -120,10 +152,15 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 			}
 			break;
 		}
-
 		return super.onTouchEvent(event);
 	}
 
+	private int getLineNumForPisition(float position) {
+		int curLineNum = 0;
+		curLineNum = (int) (position / mHeadViewHeight);
+		return curLineNum;
+	}
+	
 	private void onRefresh() {
 		mRefreshState = REFRESHING;
 		mRefreshViewImage.setVisibility(View.VISIBLE);
@@ -220,7 +257,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 			childHeightSpec = MeasureSpec.makeMeasureSpec(0,
 					MeasureSpec.UNSPECIFIED);
 		}
-		child.measure(childWidthSpec, childHeightSpec);
+		//child.measure(childWidthSpec, childHeightSpec);
 
 	}
 

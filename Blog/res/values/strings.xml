@@ -27,4 +27,13 @@
     <string name="pull_to_refresh">下拉刷新…</string>
     <string name="release_to_refresh">放开以刷新…</string>
     <string name="loading">正在载入…</string>
+    <string name="applications">我的应用</string>
+    
+    <string name="app_name_1">我的应用1</string>
+    <string name="app_name_2">我的应用2</string>
+    <string name="app_name_3">我的应用3</string>
+    <string name="app_name_4">我的应用4</string>
+    <string name="app_name_5">我的应用5</string>
+    <string name="app_name_6">我的应用6</string>
+    <string name="app_name_7">我的应用7</string>
 </resources>

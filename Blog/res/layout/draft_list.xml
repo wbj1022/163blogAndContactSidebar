@@ -27,14 +27,12 @@
 
     <Button
         android:id="@+id/clear_all"
+        style="@style/ButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
-        android:gravity="center"
         android:enabled="false"
-        android:text="@string/clear_all"
-        android:textSize="20sp"
-        android:textColor="#FFFFFF" />
+        android:text="@string/clear_all" />
 
     <ListView
         android:id="@id/android:list"

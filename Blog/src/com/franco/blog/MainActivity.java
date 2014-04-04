@@ -1,9 +1,10 @@
 package com.franco.blog;
 
+import com.franco.util.ScreensSupport;
+
 import android.database.Cursor;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
-import android.widget.*;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,12 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -23,10 +30,12 @@ public class MainActivity extends Activity {
 	private final static int NEW_DIARY = 0;
 	private final static int DIARY_LIST = 1;
 	private final static int DRAFTS = 2;
+	private final static int APPLICATIONS = 3;
 
 	private Button newDiary;
 	private Button diaryList;
 	private Button draft;
+	private Button applications;
 	private EditText id;
 	private EditText usrnameET;
 	private EditText passwordET;
@@ -61,6 +70,7 @@ public class MainActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Log.v(TAG, "getDensity = " + ScreensSupport.getDensity(this));
 		setContentView(R.layout.activity_main);
 		init();
 	}
@@ -84,6 +94,7 @@ public class MainActivity extends Activity {
 		newDiary = (Button) findViewById(R.id.new_diary);
 		diaryList = (Button) findViewById(R.id.diary_list);
 		draft = (Button) findViewById(R.id.draft_list);
+		applications = (Button) findViewById(R.id.applications);
 	}
 
 	private void setDefaultValues() {
@@ -114,6 +125,8 @@ public class MainActivity extends Activity {
 		diaryList.setId(DIARY_LIST);
 		draft.setOnClickListener(buttonListener);
 		draft.setId(DRAFTS);
+		applications.setOnClickListener(buttonListener);
+		applications.setId(APPLICATIONS);
 	}
 
 	public OnClickListener buttonListener = new OnClickListener() {
@@ -193,7 +206,7 @@ public class MainActivity extends Activity {
 
 								String title = cursor.getString(1);
 								String content = cursor.getString(2);
-								showDiaryDialog(l, title, content);
+								showDiaryDialog(2, title, content);
 							}
 						});
 
@@ -208,6 +221,10 @@ public class MainActivity extends Activity {
 					});
 				}
 
+				break;
+				
+			case APPLICATIONS:
+				startActivity(new Intent(MainActivity.this, AppListActivity.class));
 				break;
 
 			default:
@@ -224,7 +241,7 @@ public class MainActivity extends Activity {
 				MainActivity.this).setView(view);
 		mAlertDialog = builder1.create();
 		mAlertDialog.show();
-		if (_id == -1) {
+		if (_id == -1 || _id == 2) {
 			mAlertDialog.setCancelable(false);
 		}
 		titleET = (EditText) view.findViewById(R.id.diary_title);

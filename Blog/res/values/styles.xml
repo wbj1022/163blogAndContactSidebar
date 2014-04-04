@@ -1,9 +1,8 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="android:Theme.Light" />
 
-    <style name="MyAlertDialogStyle"
-           parent="android:style/Theme.Dialog">
+    <style name="MyAlertDialogStyle" parent="android:style/Theme.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowNoDisplay">false</item>
         <item name="android:windowFullscreen">false</item>
@@ -12,6 +11,20 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowBackground">@drawable/sf_wallpaper_03</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Activity</item>
+    </style>
+
+    <style name="ButtonStyle">
+        <item name="android:background">@drawable/button_bg</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#88ADA6</item>
+    </style>
+    
+    <style name="EditTextStyle">
+        <item name="android:background">@drawable/edit_text_bg</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textColor">#88ADA6</item>
     </style>
 
 </resources>

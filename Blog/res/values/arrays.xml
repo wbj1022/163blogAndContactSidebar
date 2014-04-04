@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <string-array name="vailable_charset">
         <item>0</item>
         <item>1</item>
@@ -65,5 +65,27 @@
         <item>y</item>
         <item>z</item>
     </string-array>
-    
+
+    <!--
+    <string-array name="app_list_pic">
+        <item>R.drawable.ic_app_1</item>
+        <item>R.drawable.ic_app_2</item>
+        <item>R.drawable.ic_app_3</item>
+        <item>R.drawable.ic_app_4</item>
+        <item>R.drawable.ic_app_5</item>
+        <item>R.drawable.ic_app_6</item>
+        <item>R.drawable.ic_app_7</item>
+    </string-array>
+
+    <string-array name="app_list_name">
+        <item>R.string.ic_app_1</item>
+        <item>R.string.ic_app_2</item>
+        <item>R.string.ic_app_3</item>
+        <item>R.string.ic_app_4</item>
+        <item>R.string.ic_app_5</item>
+        <item>R.string.ic_app_6</item>
+        <item>R.string.ic_app_7</item>
+    </string-array>
+    -->
+
 </resources>
