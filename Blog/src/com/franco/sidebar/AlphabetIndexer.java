@@ -1,5 +1,7 @@
 package com.franco.sidebar;
 
+import com.franco.pulltorefresh.PullToRefreshListView;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,7 +11,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
@@ -20,7 +21,7 @@ public class AlphabetIndexer extends View implements SectionIndexer, OnTouchList
 			"T", "U", "V", "W", "X", "Y", "Z" };
 	
 	private TextView toastView;
-	private ListView contactListView;
+	private PullToRefreshListView contactListView;
 	private final int length = ABC_STRING.length;
 	private Paint paint;
 	private FontMetricsInt mFmi;
@@ -34,7 +35,7 @@ public class AlphabetIndexer extends View implements SectionIndexer, OnTouchList
 		super(context, attrs);
 		
 		paint = new Paint();
-		paint.setColor(Color.parseColor("#ff63a67a"));
+		paint.setColor(Color.parseColor("#6E511E"));
 		paint.setTextSize(30);
 		paint.setAntiAlias(true);
 		mFmi = paint.getFontMetricsInt();
@@ -91,18 +92,24 @@ public class AlphabetIndexer extends View implements SectionIndexer, OnTouchList
 		int index = getCurrentSection(event.getY());
 		int section = getSectionForIndex(index);
 		int position = getPositionForSection(section);
-
+		boolean hasHead = contactListView.getHasHeadBoolean();
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			setBackgroundColor(Color.parseColor("#604F4F4F"));
 			toastView.setVisibility(View.VISIBLE);
 			toastView.setText(ABC_STRING[index]);
-			contactListView.setSelection(position + 1);
+			if(hasHead) {
+				position++;
+			}
+			contactListView.setSelection(position);
 			break;
 		case MotionEvent.ACTION_MOVE:
 			setBackgroundColor(Color.parseColor("#604F4F4F"));
 			toastView.setText(ABC_STRING[index]);
-			contactListView.setSelection(position + 1);
+			if(hasHead) {
+				position++;
+			}
+			contactListView.setSelection(position);
 			break;
 		default:
 			toastView.setVisibility(View.GONE);
@@ -127,7 +134,7 @@ public class AlphabetIndexer extends View implements SectionIndexer, OnTouchList
 		this.mPosition = mPosition;
 	}
 	
-	public void setContactListView(ListView contactListView) {
+	public void setContactListView(PullToRefreshListView contactListView) {
 		this.contactListView = contactListView;
 	}
 	

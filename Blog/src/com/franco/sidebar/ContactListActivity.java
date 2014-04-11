@@ -16,7 +16,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -37,7 +37,7 @@ public class ContactListActivity extends Activity {
 	private int[] mSection;
 	private int[] mPosition;
 
-	//private PullToRefresh mPullToRefresh;
+	// private PullToRefresh mPullToRefresh;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +53,7 @@ public class ContactListActivity extends Activity {
 		toastView = (TextView) findViewById(R.id.toast_string);
 
 		// must contain "_id" if second arg is not null
-		cursor = getContentResolver().query(
-				ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null,
+		cursor = getContentResolver().query(Phone.CONTENT_URI, null, null,
 				null, "sort_key_alt");
 		columnDisplayName = cursor.getColumnIndex("display_name");
 		String[] chars = getResources()
@@ -67,6 +66,29 @@ public class ContactListActivity extends Activity {
 
 		adapter = new MyAdapter(this, contactNameList);
 		contactListView.setAdapter(adapter);
+		contactListView.setOnRefreshListener(new OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        runOnUiThread(new Runnable() {
+                            
+                            @Override
+                            public void run() {
+                                contactListView.onRefreshComplete();
+                            } 
+                        }); 
+                    } 
+                }).start(); 
+
+			}
+		});
 
 		setSectionsAndPositions();
 		mAlphabetIndexer.setToastView(toastView);
@@ -79,29 +101,6 @@ public class ContactListActivity extends Activity {
 		} else {
 			mAlphabetIndexer.setVisibility(View.GONE);
 		}
-		contactListView.setOnRefreshListener(new OnRefreshListener() {
-            //下拉刷新时执行的操作 
-            @Override 
-            public void onRefresh() {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(3000);//模拟网络操作 
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                //刷新完成时操作 
-                            	contactListView.onRefreshComplete("上次刷新时间xxx");
-                            }
-                        });
-                    }
-                }).start();
-            }
-        });
 	}
 
 	@SuppressLint("DefaultLocale")

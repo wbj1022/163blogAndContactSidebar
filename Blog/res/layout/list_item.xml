@@ -2,8 +2,9 @@
     android:id="@+id/draft_item"
     android:layout_width="match_parent"
     android:layout_height="55dp"
-    android:orientation="horizontal"
-    android:descendantFocusability= "blocksDescendants" >
+    android:background="@drawable/list_view_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal" >
 
     <TextView
         android:id="@+id/draft_item_text"
@@ -12,17 +13,18 @@
         android:layout_alignParentLeft="true"
         android:layout_marginRight="55dp"
         android:gravity="center_vertical"
-        android:textSize="20sp"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
     <ImageButton
         android:id="@+id/del"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_alignParentRight="true"
-        android:gravity="center"
         android:background="@null"
-        android:src="@drawable/del_btn"
-        android:focusable="false"/>
+        android:contentDescription="@string/app_name"
+        android:focusable="false"
+        android:gravity="center"
+        android:src="@drawable/del_btn" />
 
 </RelativeLayout>

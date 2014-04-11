@@ -1,13 +1,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF" >
+    android:background="#A29B7C" >
 
     <com.franco.pulltorefresh.PullToRefreshListView
         android:id="@+id/contact_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E0EEE8"
         android:divider="@drawable/list_divider"
         android:fadingEdge="none"
         android:scrollbars="none" />

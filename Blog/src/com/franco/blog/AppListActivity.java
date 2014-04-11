@@ -4,8 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 
 public class AppListActivity extends Activity {
@@ -25,6 +33,7 @@ public class AppListActivity extends Activity {
 
 		setContentView(R.layout.app_gridview);
 		GridView gridview = (GridView) findViewById(R.id.gridview);
+		gridview.setSelector(new ColorDrawable(Color.TRANSPARENT));
 		ArrayList<HashMap<String, Object>> lstImageItem = new ArrayList<HashMap<String, Object>>();
 		for (int i = 0; i < 7; i++) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
@@ -35,6 +44,7 @@ public class AppListActivity extends Activity {
 		SimpleAdapter saImageItems = new SimpleAdapter(this, lstImageItem,
 				R.layout.app_gridview_item, new String[] { "image", "text" },
 				new int[] { R.id.item_image, R.id.item_text });
+		
 		gridview.setAdapter(saImageItems);
 	}
 
